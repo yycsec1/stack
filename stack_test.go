@@ -2,6 +2,7 @@ package stack
 
 import (
 	"testing"
+	"time"
 )
 
 func TestStack(t *testing.T) {
@@ -30,4 +31,22 @@ func TestStack(t *testing.T) {
 		t.Errorf("Result was incorrect, got: %t, want: %t.", result4, true)
 	}
 
+}
+
+func TestPerformance(t *testing.T) {
+	s := New[int]()
+	const size = 10_000_000
+	start := time.Now()
+	for i := 0; i < size; i++ {
+		s.Push(i)
+	}
+	elapsed := time.Since(start)
+	t.Log("Time for 10 million Push() operation", elapsed)
+
+	start = time.Now()
+	for i := 0; i < size; i++ {
+		s.Pop()
+	}
+	elapsed = time.Since(start)
+	t.Log("Time for 10 million Pop() operation", elapsed)
 }
