@@ -1,2 +1,2 @@
 # stack
-stack implementation in go using slices
+stack implementation in Go using slices
